@@ -157,9 +157,8 @@ extension SpreadSheetViewController {
 extension SpreadSheetViewController {
     func communicateWithCollectionViewLayout(){
         if let layout = collectionViewLayout as? SpreadSheetCustomLayout {
-            
             layout.cellInfoModel = sheetViewModel.getCurrentSheet()?.cells
-            print("cell index -->\(layout.cellInfoModel.count)")
+            layout.isChange = true
         }
     }
 }

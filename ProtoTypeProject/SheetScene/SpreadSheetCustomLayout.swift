@@ -15,18 +15,19 @@ class SpreadSheetCustomLayout: UICollectionViewLayout {
     var layoutAttributesItems = [[UICollectionViewLayoutAttributes]]()
     
     public var cellInfoModel : [[CellInfo]]! //viewController에서 받아올 cellInfo 의 정보
+    public var isChange : Bool = false //viewController에서 데이터 변경이 일어났을 경우 true로.
+    
     var numberOfCell : Int = 0
     
     override func prepare() {
         guard let collectionView = collectionView else { return }
         numberOfCell = collectionView.numberOfItems(inSection: 0)
-        
-        print("layoutA --> \(layoutAttributesItems.count)")
-//        if collectionView.numberOfSections != layoutAttributesItems.count {
-//            // TODO : attributes, attributesItem 할당하는 func 작성
+              
+        if isChange {
             setAttributesAndItems(collectionView: collectionView)
-         //   return
-       // }
+            isChange = false
+            return
+        }
     }//prepare
     
     override var collectionViewContentSize: CGSize{
@@ -60,10 +61,13 @@ extension SpreadSheetCustomLayout {
             for col in 0..<numberOfCell{
                 let indexPath = IndexPath(item: col, section: section)
                 let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                print("for in section , col --->\(section), \(col)")
+                
+             //   print("for in section , col --->\(section), \(col)")
                 attribute.frame = CGRect(x: x, y: y, width: cellInfoModel[section][col].width , height: cellInfoModel[section][col].height )
+                
                 oneOfSectionAttributeList.append(attribute)
                 layoutAttributes.append(attribute)
+                
                 if col == numberOfCell-1 {
                     x = 0
                     y += cellInfoModel[section][col].height
