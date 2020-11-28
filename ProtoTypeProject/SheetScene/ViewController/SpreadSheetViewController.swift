@@ -31,9 +31,22 @@ class SpreadSheetViewController: UICollectionViewController {
             print("currentCol is Nil !")
             return
         }
+        guard let currentRow = currentSheet?.row else {
+            print("currentRow is Nil")
+            return
+        }
+        // TODO : 원래 cells 정보 지우기
+        // TODO : 업데이트 된 row col정보로 cell정보 다시 만들기
+        // TODO : 업데이트 된 정보들이 있다면 currentSheet 세팅해주기
+        // TODO : 새로운 정보를 가진 시트의 cells 정보를 layout에 전달해주기
+        cellInfoViewModel.removeAllCell()
+        addCellInfoToSheet(row: currentRow, col: currentCol + 1)
+        
+        currentSheet?.updateCells(cells: cellInfoViewModel.cells)
         currentSheet?.updateCol(col: currentCol + 1)
-       
         setCurrentSheet(sheet: currentSheet)
+        
+        communicateWithCollectionViewLayout()
         print("currentCol --> \(currentCol), changeCol --> \(currentSheet?.colum)")
         collectionView.reloadData()
     }
@@ -71,7 +84,7 @@ extension SpreadSheetViewController  {
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.layer.borderWidth = 0.5
-        print(indexPath)
+     //   print(indexPath)
         if indexPath.section == 0{
             cell.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         }
@@ -118,8 +131,8 @@ extension SpreadSheetViewController {
         let col = responseSheet?.colum ?? 1
         
         addCellInfoToSheet(row: row, col: col)
-        
         responseSheet?.updateCells(cells: cellInfoViewModel.cells)
+        
         
         return responseSheet
     }
@@ -136,6 +149,7 @@ extension SpreadSheetViewController {
             cellInfoViewModel.addCellInfo(cellInfo: cellInfoViewModel.sectionCells)
             cellInfoViewModel.removeAllSectionCellInfo()
         }//for
+        
     }//func
 }//controller
 
@@ -143,7 +157,9 @@ extension SpreadSheetViewController {
 extension SpreadSheetViewController {
     func communicateWithCollectionViewLayout(){
         if let layout = collectionViewLayout as? SpreadSheetCustomLayout {
+            
             layout.cellInfoModel = sheetViewModel.getCurrentSheet()?.cells
+            print("cell index -->\(layout.cellInfoModel.count)")
         }
     }
 }

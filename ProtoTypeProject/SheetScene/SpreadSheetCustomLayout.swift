@@ -22,11 +22,11 @@ class SpreadSheetCustomLayout: UICollectionViewLayout {
         numberOfCell = collectionView.numberOfItems(inSection: 0)
         
         print("layoutA --> \(layoutAttributesItems.count)")
-        if collectionView.numberOfSections != layoutAttributesItems.count {
-            // TODO : attributes, attributesItem 할당하는 func 작성
+//        if collectionView.numberOfSections != layoutAttributesItems.count {
+//            // TODO : attributes, attributesItem 할당하는 func 작성
             setAttributesAndItems(collectionView: collectionView)
-            return
-        }
+         //   return
+       // }
     }//prepare
     
     override var collectionViewContentSize: CGSize{
@@ -55,11 +55,12 @@ extension SpreadSheetCustomLayout {
         var y : Int = 0
         var oneOfSectionAttributeList = [UICollectionViewLayoutAttributes]()
         
+        print("section --> \(collectionView.numberOfSections), col --> \(numberOfCell)")
         for section in 0..<collectionView.numberOfSections{
             for col in 0..<numberOfCell{
                 let indexPath = IndexPath(item: col, section: section)
                 let attribute = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-
+                print("for in section , col --->\(section), \(col)")
                 attribute.frame = CGRect(x: x, y: y, width: cellInfoModel[section][col].width , height: cellInfoModel[section][col].height )
                 oneOfSectionAttributeList.append(attribute)
                 layoutAttributes.append(attribute)

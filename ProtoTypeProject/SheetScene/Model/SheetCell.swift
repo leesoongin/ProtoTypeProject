@@ -48,6 +48,10 @@ class CellInfoManager {
         sectionCells.removeAll()
     }
     
+    func removeAllCells(){
+        cells.removeAll()
+    }
+    
     //여기서 cellInfo는 서버에서 받아온 cellInfo값. 이걸가지고 update인자에 넣자.
     func updateCellInfo(_ responseCellInfo : CellInfo, _ indexPath : IndexPath){
         cells[indexPath.section][indexPath.item].updateCellInfo(content: responseCellInfo.content, imageUrl: responseCellInfo.imageUrl, width: responseCellInfo.width, height: responseCellInfo.height)
@@ -79,6 +83,10 @@ class CellInfoViewModel {
     
     func removeAllSectionCellInfo(){
         manager.removeAllSectionCellInfo()
+    }
+    
+    func removeAllCell(){
+        manager.removeAllCells()
     }
     
     func updateCellInfo(responseCellInfo : CellInfo, indexPath : IndexPath){
