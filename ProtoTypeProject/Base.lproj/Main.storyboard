@@ -1,24 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHJ-ca-6bv">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--모든 시트 리스트-->
+        <scene sceneID="I9G-EN-Q7U">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="vB1-Sz-26F" customClass="SheetListViewController" customModule="ProtoTypeProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ur5-1R-cFk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SheetListCell" rowHeight="50" id="wc3-76-s25" customClass="SheetListCell" customModule="ProtoTypeProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wc3-76-s25" id="IRK-Rh-kZF">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름없는 시트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PR7-FD-Ao7">
+                                            <rect key="frame" x="16" y="8" width="82" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작성일" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtd-4b-Sjr">
+                                            <rect key="frame" x="16" y="28" width="32" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 수정자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tG-IU-vcg">
+                                            <rect key="frame" x="329" y="8" width="69" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="PR7-FD-Ao7" firstAttribute="top" secondItem="IRK-Rh-kZF" secondAttribute="top" constant="8" id="5lf-g3-ea0"/>
+                                        <constraint firstItem="dtd-4b-Sjr" firstAttribute="top" secondItem="PR7-FD-Ao7" secondAttribute="bottom" constant="2" id="9A7-oO-9Jh"/>
+                                        <constraint firstItem="PR7-FD-Ao7" firstAttribute="leading" secondItem="IRK-Rh-kZF" secondAttribute="leading" constant="16" id="CcK-9E-d0h"/>
+                                        <constraint firstAttribute="trailing" secondItem="5tG-IU-vcg" secondAttribute="trailing" constant="16" id="D9d-o7-WsX"/>
+                                        <constraint firstItem="dtd-4b-Sjr" firstAttribute="leading" secondItem="IRK-Rh-kZF" secondAttribute="leading" constant="16" id="LUX-or-4t0"/>
+                                        <constraint firstItem="5tG-IU-vcg" firstAttribute="top" secondItem="IRK-Rh-kZF" secondAttribute="top" constant="8" id="dFH-EX-YMu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="dtd-4b-Sjr" id="kds-rK-P4K"/>
+                                    <outlet property="lastEditUserLabel" destination="5tG-IU-vcg" id="CfA-ci-rqh"/>
+                                    <outlet property="sheetNameLabel" destination="PR7-FD-Ao7" id="Mfy-dY-ENN"/>
+                                    <segue destination="QYb-oI-yeV" kind="show" identifier="sheetDetail" trigger="accessoryAction" id="bjn-Vp-dXp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vB1-Sz-26F" id="nop-3O-hCz"/>
+                            <outlet property="delegate" destination="vB1-Sz-26F" id="onu-Zf-XTn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="모든 시트 리스트" id="nJ3-5j-Lcu">
+                        <barButtonItem key="rightBarButtonItem" title="시트 추가" image="plus.rectangle.on.rectangle" catalog="system" id="ktR-uo-FWk">
+                            <connections>
+                                <action selector="addSheet:" destination="vB1-Sz-26F" id="HTV-uP-pTM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gn-ET-WHB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1036" y="1620"/>
+        </scene>
+        <!--Sheet-->
+        <scene sceneID="NDF-oZ-JS0">
+            <objects>
+                <navigationController id="x1s-tT-goB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sheet" image="paperplane.fill" catalog="system" id="aiC-cS-nNW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FKU-Ni-ERN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vB1-Sz-26F" kind="relationship" relationship="rootViewController" id="jSL-Gv-nzS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Hk-VN-TgW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1036" y="860"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="cEK-2o-wS8">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wHJ-ca-6bv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q9Q-YV-p9f">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemPinkColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="x1s-tT-goB" kind="relationship" relationship="viewControllers" id="rM6-z6-lbk"/>
+                        <segue destination="5MQ-c6-Ujv" kind="relationship" relationship="viewControllers" id="Rnz-HG-eYC"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLZ-D2-lK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="69.565217391304358" y="85.714285714285708"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="PRX-S3-yZf">
+            <objects>
+                <viewController id="5MQ-c6-Ujv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zlK-Bx-Osd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="idl-QQ-Bzk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="More" image="table.badge.more.fill" catalog="system" id="fiv-fK-lvL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbt-Pg-pzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1297" y="860"/>
+        </scene>
+        <!--Spread Sheet View Controller-->
+        <scene sceneID="brR-LL-6gS">
+            <objects>
+                <collectionViewController id="QYb-oI-yeV" customClass="SpreadSheetViewController" customModule="ProtoTypeProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" id="GLU-1N-wNs" userLabel="CollectionView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewLayout key="collectionViewLayout" id="egi-r0-DLz" customClass="SpreadSheetCustomLayout" customModule="ProtoTypeProject" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sheetCell" id="K6p-Or-fCK" customClass="sheetCell" customModule="ProtoTypeProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KQ7-ZT-WCe">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-Yo-aIW">
+                                            <rect key="frame" x="-4.5" y="10" width="59" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jVg-Yo-aIW" firstAttribute="centerY" secondItem="KQ7-ZT-WCe" secondAttribute="centerY" id="5cC-5Z-dVD"/>
+                                        <constraint firstItem="jVg-Yo-aIW" firstAttribute="centerX" secondItem="KQ7-ZT-WCe" secondAttribute="centerX" id="edo-Wn-6Fq"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="QYb-oI-yeV" id="3rY-oH-anE"/>
+                            <outlet property="delegate" destination="QYb-oI-yeV" id="NZx-Py-hTN"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="qOq-fp-0DT">
+                        <rightBarButtonItems>
+                            <barButtonItem title="열 추가" id="uNk-Zg-J7j">
+                                <connections>
+                                    <action selector="addCol:" destination="QYb-oI-yeV" id="hsb-Td-bpR"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="행 추가" id="FdF-0C-LRZ">
+                                <connections>
+                                    <action selector="addRow:" destination="QYb-oI-yeV" id="g0d-NF-k1f"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionVIew" destination="GLU-1N-wNs" id="BJb-FB-oLL"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pux-39-gpc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-123" y="1620"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
+        <image name="plus.rectangle.on.rectangle" catalog="system" width="128" height="96"/>
+        <image name="table.badge.more.fill" catalog="system" width="128" height="91"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
