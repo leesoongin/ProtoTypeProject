@@ -35,8 +35,8 @@ struct Sheet{
     init(){
         self.sheetId = 0
         self.cells = []
-        self.row = 100
-        self.colum = 1
+        self.row = 5
+        self.colum = 2
     }
     
     init (sheetId : Int, cells : [[CellInfo]], row : Int, colum : Int){

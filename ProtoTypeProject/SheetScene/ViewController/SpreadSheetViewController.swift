@@ -52,8 +52,29 @@ class SpreadSheetViewController: UICollectionViewController {
     }
     
     @IBAction func addRow(_ sender: Any) {
-        let currentRow = currentSheet?.row
-
+        guard let currentCol = currentSheet?.colum else {
+            print("currentCol is Nil !")
+            return
+        }
+        guard let currentRow = currentSheet?.row else {
+            print("currentRow is Nil")
+            return
+        }
+        
+        // TODO : 원래 cells 정보 지우기
+        // TODO : 업데이트 된 row col정보로 cell정보 다시 만들기
+        // TODO : 업데이트 된 정보들이 있다면 currentSheet 세팅해주기
+        // TODO : 새로운 정보를 가진 시트의 cells 정보를 layout에 전달해주기
+        cellInfoViewModel.removeAllCell()
+        addCellInfoToSheet(row: currentRow + 1, col: currentCol)
+        
+        currentSheet?.updateCells(cells: cellInfoViewModel.cells)
+        currentSheet?.updateRow(row: currentRow + 1)
+        setCurrentSheet(sheet: currentSheet)
+        
+        communicateWithCollectionViewLayout()
+        print("currentCol --> \(currentCol), changeCol --> \(currentSheet?.colum)")
+        collectionView.reloadData()
     }
 }
 
