@@ -8,13 +8,13 @@
 import UIKit
 
 
-class SpreadSheetViewController: UICollectionViewController {
-
-    @IBOutlet var collectionVIew: UICollectionView!
-    let sheetViewModel = SheetViewModel()
-    let cellInfoViewModel = CellInfoViewModel()
+class SpreadSheetViewController: UIViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var currentSheet : Sheet?
+    
+    let sheetViewModel = SheetViewModel()
+    let cellInfoViewModel = CellInfoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,10 @@ class SpreadSheetViewController: UICollectionViewController {
         setCurrentSheet(sheet: currentSheet)
         
         communicateWithCollectionViewLayout() // layout객체에 데이터 전달
+    }
+    
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: - add (col or row) EventHandler
@@ -40,6 +44,7 @@ class SpreadSheetViewController: UICollectionViewController {
         // TODO : 업데이트 된 정보들이 있다면 currentSheet 세팅해주기
         // TODO : 새로운 정보를 가진 시트의 cells 정보를 layout에 전달해주기
         cellInfoViewModel.removeAllCell()
+        
         addCellInfoToSheet(row: currentRow, col: currentCol + 1)
         
         currentSheet?.updateCells(cells: cellInfoViewModel.cells)
@@ -47,7 +52,6 @@ class SpreadSheetViewController: UICollectionViewController {
         setCurrentSheet(sheet: currentSheet)
         
         communicateWithCollectionViewLayout()
-        print("currentCol --> \(currentCol), changeCol --> \(currentSheet?.colum)")
         collectionView.reloadData()
     }
     
@@ -61,10 +65,6 @@ class SpreadSheetViewController: UICollectionViewController {
             return
         }
         
-        // TODO : 원래 cells 정보 지우기
-        // TODO : 업데이트 된 row col정보로 cell정보 다시 만들기
-        // TODO : 업데이트 된 정보들이 있다면 currentSheet 세팅해주기
-        // TODO : 새로운 정보를 가진 시트의 cells 정보를 layout에 전달해주기
         cellInfoViewModel.removeAllCell()
         addCellInfoToSheet(row: currentRow + 1, col: currentCol)
         
@@ -73,14 +73,14 @@ class SpreadSheetViewController: UICollectionViewController {
         setCurrentSheet(sheet: currentSheet)
         
         communicateWithCollectionViewLayout()
-        print("currentCol --> \(currentCol), changeCol --> \(currentSheet?.colum)")
         collectionView.reloadData()
     }
 }
 
 //MARK: - collectionViewDataSource
-extension SpreadSheetViewController  {
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+
+extension SpreadSheetViewController : UICollectionViewDataSource{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         //section이 행의 개수라 생각
         guard let section = sheetViewModel.getCurrentSheet()?.row else {
             print("numberOfSecions nil error !")
@@ -90,7 +90,7 @@ extension SpreadSheetViewController  {
         //return sheetViewModel.getCurrentSheet()?.row ?? 1 해도 되지만, error handling위해 guard 썼음 걍
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         // TODO : 섹션당 colum
         guard let col = sheetViewModel.getCurrentSheet()?.colum else {
             print("col nil error")
@@ -99,19 +99,25 @@ extension SpreadSheetViewController  {
        return col
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sheetCell", for: indexPath) as? sheetCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        cell.layer.borderWidth = 0.5
-     //   print(indexPath)
-        if indexPath.section == 0{
+        
+        if indexPath.section == 0 && indexPath.row == 0{
             cell.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            cell.layer.borderWidth = 0.5
+        }else if indexPath.section == 0 || indexPath.row == 0{
+           // if indexPath.section
+            cell.backgroundColor =  #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            cell.layer.borderWidth = 0.5
+        }else{
+            cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            cell.layer.borderWidth = 0.5
         }
-        if indexPath.row == 0{
-            cell.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        }
+
         return cell
     }
     
@@ -119,8 +125,8 @@ extension SpreadSheetViewController  {
 }
 
 //MARK: - collectionViewDelegate
-extension SpreadSheetViewController  {
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+extension SpreadSheetViewController : UICollectionViewDelegate {
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected cell index --> \(indexPath.row)")
         let cellInfo = cellInfoViewModel.cells[indexPath.section][indexPath.item]
         
@@ -129,11 +135,13 @@ extension SpreadSheetViewController  {
 }
 
 // MARK: - SheetCell
+
 class sheetCell : UICollectionViewCell {
-    
+    @IBOutlet weak var label: UILabel!
 }
 
 // MARK: - setCurrentSheetFromServer Method
+
 extension SpreadSheetViewController {
     func setCurrentSheet(sheet : Sheet?) {
         guard let sheet = sheet else {
@@ -153,7 +161,6 @@ extension SpreadSheetViewController {
         
         addCellInfoToSheet(row: row, col: col)
         responseSheet?.updateCells(cells: cellInfoViewModel.cells)
-        
         
         return responseSheet
     }
@@ -175,10 +182,13 @@ extension SpreadSheetViewController {
 }//controller
 
 //MARK: - communicate CellInfoModel with collectionView Layout
+
 extension SpreadSheetViewController {
     func communicateWithCollectionViewLayout(){
-        if let layout = collectionViewLayout as? SpreadSheetCustomLayout {
+        
+        if let layout = collectionView.collectionViewLayout as? SpreadSheetCustomLayout {
             layout.cellInfoModel = sheetViewModel.getCurrentSheet()?.cells
+            layout.numberOfCell = sheetViewModel.getCurrentSheet()?.colum ?? 1
             layout.isChange = true
         }
     }

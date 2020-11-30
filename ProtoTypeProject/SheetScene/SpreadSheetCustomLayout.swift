@@ -16,18 +16,23 @@ class SpreadSheetCustomLayout: UICollectionViewLayout {
     
     public var cellInfoModel : [[CellInfo]]! //viewController에서 받아올 cellInfo 의 정보
     public var isChange : Bool = false //viewController에서 데이터 변경이 일어났을 경우 true로.
-    
-    var numberOfCell : Int = 0
+    public var numberOfCell : Int = 0
     
     override func prepare() {
         guard let collectionView = collectionView else { return }
-        numberOfCell = collectionView.numberOfItems(inSection: 0)
-              
+       // numberOfCell = collectionView.numberOfItems(inSection: 0)
+      
         if isChange {
+            layoutAttributes = []
+            layoutAttributesItems = []
+            
             setAttributesAndItems(collectionView: collectionView)
+            sticktHeader(collectionView: collectionView, forItems: layoutAttributesItems)
             isChange = false
             return
         }
+        
+        sticktHeader(collectionView: collectionView, forItems: layoutAttributesItems)
     }//prepare
     
     override var collectionViewContentSize: CGSize{
@@ -48,6 +53,9 @@ class SpreadSheetCustomLayout: UICollectionViewLayout {
         return layoutAttributes
     }
     
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        true
+    }
 }
 
 extension SpreadSheetCustomLayout {
@@ -79,4 +87,21 @@ extension SpreadSheetCustomLayout {
             oneOfSectionAttributeList.removeAll()
         }//for
     }//func
+    
+    func sticktHeader(collectionView : UICollectionView, forItems : [[UICollectionViewLayoutAttributes]]){
+        //0행
+        for col in 0..<numberOfCell {
+            forItems[0][col].frame.origin.y = collectionView.contentOffset.y
+            forItems[0][col].zIndex = 100
+        }
+        //0열
+        for section in 0..<collectionView.numberOfSections{
+            forItems[section][0].frame.origin.x = collectionView.contentOffset.x
+            forItems[section][0].zIndex = 100
+        }
+        //(0,0) 좌표 고정
+        forItems[0][0].frame.origin.x = collectionView.contentOffset.x
+        forItems[0][0].frame.origin.y = collectionView.contentOffset.y
+        forItems[0][0].zIndex = 125
+    }
 }

@@ -3,13 +3,14 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--모든 시트 리스트-->
+        <!--Sheet-->
         <scene sceneID="I9G-EN-Q7U">
             <objects>
                 <tableViewController id="vB1-Sz-26F" customClass="SheetListViewController" customModule="ProtoTypeProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,9 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="H0e-lt-e2J">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="모든 시트 리스트" id="azR-4d-bh0">
+                                    <barButtonItem key="rightBarButtonItem" title="Item" image="plus.rectangle.on.rectangle" catalog="system" id="zce-hC-Ino">
+                                        <connections>
+                                            <action selector="addSheet:" destination="vB1-Sz-26F" id="Yag-Lq-cKD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SheetListCell" rowHeight="50" id="wc3-76-s25" customClass="SheetListCell" customModule="ProtoTypeProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wc3-76-s25" id="IRK-Rh-kZF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -57,7 +71,7 @@
                                     <outlet property="dateLabel" destination="dtd-4b-Sjr" id="kds-rK-P4K"/>
                                     <outlet property="lastEditUserLabel" destination="5tG-IU-vcg" id="CfA-ci-rqh"/>
                                     <outlet property="sheetNameLabel" destination="PR7-FD-Ao7" id="Mfy-dY-ENN"/>
-                                    <segue destination="QYb-oI-yeV" kind="show" identifier="sheetDetail" trigger="accessoryAction" id="bjn-Vp-dXp"/>
+                                    <segue destination="ya5-Mn-rDl" kind="presentation" identifier="sheetDetail" trigger="accessoryAction" modalPresentationStyle="fullScreen" id="bOm-XZ-xyT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -66,34 +80,13 @@
                             <outlet property="delegate" destination="vB1-Sz-26F" id="onu-Zf-XTn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="모든 시트 리스트" id="nJ3-5j-Lcu">
-                        <barButtonItem key="rightBarButtonItem" title="시트 추가" image="plus.rectangle.on.rectangle" catalog="system" id="ktR-uo-FWk">
-                            <connections>
-                                <action selector="addSheet:" destination="vB1-Sz-26F" id="HTV-uP-pTM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Sheet" image="paperplane.fill" catalog="system" id="YHY-a8-OPF"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gn-ET-WHB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1036" y="1620"/>
-        </scene>
-        <!--Sheet-->
-        <scene sceneID="NDF-oZ-JS0">
-            <objects>
-                <navigationController id="x1s-tT-goB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sheet" image="paperplane.fill" catalog="system" id="aiC-cS-nNW"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FKU-Ni-ERN">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="vB1-Sz-26F" kind="relationship" relationship="rootViewController" id="jSL-Gv-nzS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Hk-VN-TgW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1036" y="860"/>
+            <point key="canvasLocation" x="-1001" y="860"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cEK-2o-wS8">
@@ -107,8 +100,8 @@
                         <color key="selectedImageTintColor" systemColor="systemPinkColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="x1s-tT-goB" kind="relationship" relationship="viewControllers" id="rM6-z6-lbk"/>
-                        <segue destination="5MQ-c6-Ujv" kind="relationship" relationship="viewControllers" id="Rnz-HG-eYC"/>
+                        <segue destination="vB1-Sz-26F" kind="relationship" relationship="viewControllers" id="cKc-HU-aHb"/>
+                        <segue destination="5MQ-c6-Ujv" kind="relationship" relationship="viewControllers" id="MST-Uv-DK6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLZ-D2-lK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -132,65 +125,97 @@
             <point key="canvasLocation" x="1297" y="860"/>
         </scene>
         <!--Spread Sheet View Controller-->
-        <scene sceneID="brR-LL-6gS">
+        <scene sceneID="gzV-FE-KDZ">
             <objects>
-                <collectionViewController id="QYb-oI-yeV" customClass="SpreadSheetViewController" customModule="ProtoTypeProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" id="GLU-1N-wNs" userLabel="CollectionView">
+                <viewController id="ya5-Mn-rDl" customClass="SpreadSheetViewController" customModule="ProtoTypeProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p1V-r9-drG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9c-73-enb">
+                                <rect key="frame" x="0.0" y="31" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="시트" id="qWH-QZ-4VE">
+                                        <barButtonItem key="leftBarButtonItem" id="bhe-V5-W2O">
+                                            <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large"/>
+                                            <connections>
+                                                <action selector="close:" destination="ya5-Mn-rDl" id="tZO-yh-0pT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="열 추가" id="ScS-Q3-Mkz">
+                                                <color key="tintColor" red="0.57896566824652507" green="0.80179323186528495" blue="0.54465154693310636" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="addCol:" destination="ya5-Mn-rDl" id="OJ3-e4-O1L"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="행 추가" id="jSU-dV-PRq">
+                                                <connections>
+                                                    <action selector="addRow:" destination="ya5-Mn-rDl" id="gxV-FA-dru"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="njL-s3-X0A">
+                                <rect key="frame" x="0.0" y="75" width="414" height="787"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="QKg-IS-N6U" customClass="SpreadSheetCustomLayout" customModule="ProtoTypeProject" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sheetCell" id="U5C-ER-fST" customClass="sheetCell" customModule="ProtoTypeProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XxO-zk-yKZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRE-Px-OaJ">
+                                                    <rect key="frame" x="4" y="14.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sRE-Px-OaJ" firstAttribute="centerY" secondItem="XxO-zk-yKZ" secondAttribute="centerY" id="rFx-MZ-JWy"/>
+                                                <constraint firstItem="sRE-Px-OaJ" firstAttribute="centerX" secondItem="XxO-zk-yKZ" secondAttribute="centerX" id="u9S-JI-flp"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="sRE-Px-OaJ" id="UyB-Qn-tGg"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ya5-Mn-rDl" id="l9A-ZC-Eij"/>
+                                    <outlet property="delegate" destination="ya5-Mn-rDl" id="c6q-ma-zXF"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jmk-Xz-csO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewLayout key="collectionViewLayout" id="egi-r0-DLz" customClass="SpreadSheetCustomLayout" customModule="ProtoTypeProject" customModuleProvider="target"/>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sheetCell" id="K6p-Or-fCK" customClass="sheetCell" customModule="ProtoTypeProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KQ7-ZT-WCe">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-Yo-aIW">
-                                            <rect key="frame" x="-4.5" y="10" width="59" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="jVg-Yo-aIW" firstAttribute="centerY" secondItem="KQ7-ZT-WCe" secondAttribute="centerY" id="5cC-5Z-dVD"/>
-                                        <constraint firstItem="jVg-Yo-aIW" firstAttribute="centerX" secondItem="KQ7-ZT-WCe" secondAttribute="centerX" id="edo-Wn-6Fq"/>
-                                    </constraints>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="QYb-oI-yeV" id="3rY-oH-anE"/>
-                            <outlet property="delegate" destination="QYb-oI-yeV" id="NZx-Py-hTN"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="qOq-fp-0DT">
-                        <rightBarButtonItems>
-                            <barButtonItem title="열 추가" id="uNk-Zg-J7j">
-                                <connections>
-                                    <action selector="addCol:" destination="QYb-oI-yeV" id="hsb-Td-bpR"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="행 추가" id="FdF-0C-LRZ">
-                                <connections>
-                                    <action selector="addRow:" destination="QYb-oI-yeV" id="g0d-NF-k1f"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                        <constraints>
+                            <constraint firstItem="O9c-73-enb" firstAttribute="leading" secondItem="jmk-Xz-csO" secondAttribute="leading" id="N1O-mt-Txe"/>
+                            <constraint firstItem="jmk-Xz-csO" firstAttribute="bottom" secondItem="njL-s3-X0A" secondAttribute="bottom" id="Oi2-eq-OyC"/>
+                            <constraint firstItem="njL-s3-X0A" firstAttribute="top" secondItem="jmk-Xz-csO" secondAttribute="top" constant="31" id="bjX-Vi-naG"/>
+                            <constraint firstItem="jmk-Xz-csO" firstAttribute="trailing" secondItem="njL-s3-X0A" secondAttribute="trailing" id="bwc-QH-iqc"/>
+                            <constraint firstItem="jmk-Xz-csO" firstAttribute="top" secondItem="O9c-73-enb" secondAttribute="top" constant="13" id="cvs-Sf-lAA"/>
+                            <constraint firstItem="njL-s3-X0A" firstAttribute="leading" secondItem="jmk-Xz-csO" secondAttribute="leading" id="kEp-H9-dZu"/>
+                            <constraint firstItem="jmk-Xz-csO" firstAttribute="trailing" secondItem="O9c-73-enb" secondAttribute="trailing" id="qyg-yn-Nmf"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="collectionVIew" destination="GLU-1N-wNs" id="BJb-FB-oLL"/>
+                        <outlet property="collectionView" destination="njL-s3-X0A" id="FXz-Fy-Iut"/>
                     </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pux-39-gpc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ah2-rc-ydS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-123" y="1620"/>
+            <point key="canvasLocation" x="-1001" y="1618"/>
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="plus.rectangle.on.rectangle" catalog="system" width="128" height="96"/>
         <image name="table.badge.more.fill" catalog="system" width="128" height="91"/>

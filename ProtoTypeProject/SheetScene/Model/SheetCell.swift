@@ -5,7 +5,6 @@
 //  Created by 이숭인 on 2020/11/27.
 //
 
-
 import UIKit
 
 struct CellInfo{
