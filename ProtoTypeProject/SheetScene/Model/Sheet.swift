@@ -11,10 +11,12 @@
 
 import UIKit
 
+
 struct Sheet{
     //일단 default값 넣자
     var sheetId : Int
     var cells : [[CellInfo]]
+    var selectedCells : [SelectedCell]
     var row : Int  //section개념으로 생각해야할거같은데.
     var colum : Int 
     
@@ -32,18 +34,24 @@ struct Sheet{
         self.cells = cells
     }
     
+    mutating func updateSelectedCells(selectedCells : [SelectedCell]){
+        self.selectedCells = selectedCells
+    }
+    
     init(){
         self.sheetId = 0
         self.cells = []
-        self.row = 100
-        self.colum = 5
+        self.row = 2
+        self.colum = 2
+        self.selectedCells = []
     }
     
-    init (sheetId : Int, cells : [[CellInfo]], row : Int, colum : Int){
+    init (sheetId : Int, cells : [[CellInfo]], row : Int, colum : Int, selectedCells : [SelectedCell]){
         self.sheetId = sheetId
         self.cells = cells
         self.row = row
         self.colum = colum
+        self.selectedCells = selectedCells
     }
 }
 
@@ -75,6 +83,10 @@ class SheetManager {
     func updateCells(_ cells : [[CellInfo]]){
         currentSheet?.updateCells(cells: cells)
     }
+    
+    func updateSelectedCells(_ selectedCells : [SelectedCell]){
+        currentSheet?.updateSelectedCells(selectedCells: selectedCells)
+    }
 }
 
 class SheetViewModel {
@@ -101,4 +113,9 @@ class SheetViewModel {
     func updateCells(cells : [[CellInfo]]){
         manager.updateCells(cells)
     }
+    
+    func updateSelectedCells(SelectedCells : [SelectedCell]){
+        manager.updateSelectedCells(SelectedCells)
+    }
 }
+

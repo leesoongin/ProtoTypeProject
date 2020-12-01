@@ -38,7 +38,7 @@ class SheetListInfoManager {
         SheetListInfo(sheetName:"aaaa", lastEditUser: "aaaaa", date: Date()),
         SheetListInfo(sheetName:"aaaa", lastEditUser: "aaaaa", date: Date())
     ]
-    
+
     //함수의 인자는 나중에 설정해줄 예정. 일단 기본값으로만 세팅해주자.
     func createSheetListInfo() -> SheetListInfo{
         return SheetListInfo()

@@ -20,7 +20,6 @@ class SpreadSheetCustomLayout: UICollectionViewLayout {
     
     override func prepare() {
         guard let collectionView = collectionView else { return }
-       // numberOfCell = collectionView.numberOfItems(inSection: 0)
       
         if isChange {
             layoutAttributes = []

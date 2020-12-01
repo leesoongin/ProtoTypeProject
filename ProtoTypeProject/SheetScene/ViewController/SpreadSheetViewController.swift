@@ -15,6 +15,7 @@ class SpreadSheetViewController: UIViewController {
     
     let sheetViewModel = SheetViewModel()
     let cellInfoViewModel = CellInfoViewModel()
+    let selectedCellViewModel = SelectedCellsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +88,6 @@ extension SpreadSheetViewController : UICollectionViewDataSource{
             return 1
         }
         return section
-        //return sheetViewModel.getCurrentSheet()?.row ?? 1 해도 되지만, error handling위해 guard 썼음 걍
     }
     
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -104,33 +104,50 @@ extension SpreadSheetViewController : UICollectionViewDataSource{
         
         
         if indexPath.section == 0 && indexPath.row == 0{
+            cell.label.text = ""
             cell.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
             cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             cell.layer.borderWidth = 0.5
         }else if indexPath.section == 0 || indexPath.row == 0{
-           // if indexPath.section
+            if indexPath.section == 0 {
+                let int:UInt8 = 64 + UInt8(indexPath.item)
+                var string = ""
+                string.append(Character(UnicodeScalar(int)))
+                cell.label.text = string
+            }else {
+                cell.label.text = String(indexPath.section)
+            }
+            
             cell.backgroundColor =  #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             cell.layer.borderWidth = 0.5
         }else{
+            cell.label.text = ""
             cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             cell.layer.borderWidth = 0.5
         }
-
         return cell
     }
-    
-    
 }
 
 //MARK: - collectionViewDelegate
 extension SpreadSheetViewController : UICollectionViewDelegate {
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected cell index --> \(indexPath.row)")
-        let cellInfo = cellInfoViewModel.cells[indexPath.section][indexPath.item]
+        // TODO : 선택된 셀 리스트에 들어갈 선택된 셀 객체를 하나 만든다.
+        // TODO : 지금 만들어진 셀 객체가 리스트 안에 존재하는지, 존재하지 않는지 체크한다.
+        // TODO : 존재하지않으면 리스트에 추가한다.
+        let selectedCell = selectedCellViewModel.createSelectedCell(indexPath: indexPath)
         
-        print("section -->\(indexPath.section), row --> \(indexPath.row), info --> \(cellInfo)")
+        if !selectedCellViewModel.isContainSelectedCell(indexPath: indexPath){//들어있지 않다면
+            selectedCellViewModel.addSelectedCell(selectedCell: selectedCell)
+            if let cell = collectionView.cellForItem(at: indexPath) as? sheetCell {
+                cell.layer.borderColor =  #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                cell.layer.borderWidth = 3
+            }
+        }
+        
+       
     }
 }
 

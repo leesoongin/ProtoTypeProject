@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A803C903256FE1580021CB14 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803C902256FE1580021CB14 /* Sheet.swift */; };
-		A8276ECD25711D42003B5E56 /* SheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8276ECC25711D42003B5E56 /* SheetCell.swift */; };
+		A8276ECD25711D42003B5E56 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8276ECC25711D42003B5E56 /* Cell.swift */; };
 		A8276ED225715FD9003B5E56 /* SpreadSheetCustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8276ED125715FD9003B5E56 /* SpreadSheetCustomLayout.swift */; };
 		A842E9D1256F88A5004E8CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A842E9D0256F88A5004E8CEA /* AppDelegate.swift */; };
 		A842E9D3256F88A5004E8CEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A842E9D2256F88A5004E8CEA /* SceneDelegate.swift */; };
@@ -19,11 +19,12 @@
 		A842E9EF256F92F4004E8CEA /* SheetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A842E9EE256F92F4004E8CEA /* SheetListViewController.swift */; };
 		A842E9F3256F98E4004E8CEA /* SheetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A842E9F2256F98E4004E8CEA /* SheetList.swift */; };
 		A842E9F7256FB11A004E8CEA /* SpreadSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A842E9F6256FB11A004E8CEA /* SpreadSheetViewController.swift */; };
+		A8DD580625768A6C008DFFA8 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD580525768A6C008DFFA8 /* SelectedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A803C902256FE1580021CB14 /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
-		A8276ECC25711D42003B5E56 /* SheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetCell.swift; sourceTree = "<group>"; };
+		A8276ECC25711D42003B5E56 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		A8276ED125715FD9003B5E56 /* SpreadSheetCustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreadSheetCustomLayout.swift; sourceTree = "<group>"; };
 		A842E9CD256F88A5004E8CEA /* ProtoTypeProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtoTypeProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A842E9D0256F88A5004E8CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +37,7 @@
 		A842E9EE256F92F4004E8CEA /* SheetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetListViewController.swift; sourceTree = "<group>"; };
 		A842E9F2256F98E4004E8CEA /* SheetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetList.swift; sourceTree = "<group>"; };
 		A842E9F6256FB11A004E8CEA /* SpreadSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreadSheetViewController.swift; sourceTree = "<group>"; };
+		A8DD580525768A6C008DFFA8 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,8 @@
 			children = (
 				A842E9F2256F98E4004E8CEA /* SheetList.swift */,
 				A803C902256FE1580021CB14 /* Sheet.swift */,
-				A8276ECC25711D42003B5E56 /* SheetCell.swift */,
+				A8276ECC25711D42003B5E56 /* Cell.swift */,
+				A8DD580525768A6C008DFFA8 /* SelectedCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,9 +185,10 @@
 				A842E9F3256F98E4004E8CEA /* SheetList.swift in Sources */,
 				A842E9F7256FB11A004E8CEA /* SpreadSheetViewController.swift in Sources */,
 				A842E9EF256F92F4004E8CEA /* SheetListViewController.swift in Sources */,
-				A8276ECD25711D42003B5E56 /* SheetCell.swift in Sources */,
+				A8276ECD25711D42003B5E56 /* Cell.swift in Sources */,
 				A842E9D1256F88A5004E8CEA /* AppDelegate.swift in Sources */,
 				A842E9DB256F88A5004E8CEA /* ProtoTypeProject.xcdatamodeld in Sources */,
+				A8DD580625768A6C008DFFA8 /* SelectedCell.swift in Sources */,
 				A8276ED225715FD9003B5E56 /* SpreadSheetCustomLayout.swift in Sources */,
 				A842E9D3256F88A5004E8CEA /* SceneDelegate.swift in Sources */,
 				A803C903256FE1580021CB14 /* Sheet.swift in Sources */,
